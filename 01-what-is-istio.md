@@ -22,10 +22,10 @@ handle traffic on its behalf. Developers write business logic; the mesh handles 
 
 | Area | Features |
 |------|----------|
-| 🚦 Traffic management | Routing rules, traffic splitting, retries, timeouts, fault injection, mirroring |
-| 🔐 Security | Automatic mutual TLS (mTLS), workload identity, authorization policies, JWT validation |
-| 👀 Observability | Golden-signal metrics, distributed tracing, access logs — without code changes |
-| 🧩 Extensibility | Wasm plugins, EnvoyFilter, external authorization |
+|  Traffic management | Routing rules, traffic splitting, retries, timeouts, fault injection, mirroring |
+|  Security | Automatic mutual TLS (mTLS), workload identity, authorization policies, JWT validation |
+|  Observability | Golden-signal metrics, distributed tracing, access logs — without code changes |
+|  Extensibility | Wasm plugins, EnvoyFilter, external authorization |
 
 ## Key terms
 
