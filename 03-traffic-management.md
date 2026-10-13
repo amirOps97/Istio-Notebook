@@ -57,7 +57,7 @@ metadata:
   name: ingress-gateway-configuration
 spec:
   selector:
-    istio: ingrmyappse Istio default gateway implementation
+    istio: ingressgateway # use Istio default gateway implementation
   servers:
   - port:
       number: 80
@@ -117,7 +117,7 @@ metadata:
   name: my-gateway 
 spec:
   selector:
-    istio: ingrmyappse Istio default gateway implementation
+    istio: ingressgateway # use Istio default gateway implementation
   servers:
     - port: { number: 80, name: http, protocol: HTTP }
       hosts: ["myapp.example.com"] # Domain name of the external website
@@ -149,7 +149,7 @@ metadata:
   name: ingress-gateway-configuration
 spec:
   selector:
-    istio: ingrmyappse Istio default gateway implementation
+    istio: ingressgateway # use Istio default gateway implementation
   servers:
   - port:
       number: 80
