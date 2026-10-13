@@ -18,19 +18,6 @@ A single binary that combines what used to be separate components:
 An Envoy proxy container is injected into every pod. All inbound/outbound traffic is
 redirected through it (via iptables set up by an init container or the Istio CNI plugin).
 
-```mermaid
-flowchart LR
-    subgraph PodA[Pod A]
-        A[App A] --> EA[Envoy sidecar]
-    end
-    subgraph PodB[Pod B]
-        EB[Envoy sidecar] --> B[App B]
-    end
-    EA -- mTLS --> EB
-    istiod[(istiod)] -. xDS config + certs .-> EA
-    istiod -. xDS config + certs .-> EB
-```
-
 Full L7 features per pod · Extra CPU/memory per pod, pod restart needed to inject/upgrade
 
 ### 2. Ambient mode (sidecar-less)
@@ -38,17 +25,6 @@ Splits the data plane into two layers:
 
 - **ztunnel** — a per-node L4 proxy (DaemonSet). Handles mTLS, identity, L4 auth and telemetry.
 - **waypoint proxy** — an optional, per-namespace (or per-service) Envoy deployment for L7 features (HTTP routing, L7 auth policies, retries).
-
-```mermaid
-flowchart LR
-    subgraph Node1
-        A[App A] --> Z1[ztunnel]
-    end
-    subgraph Node2
-        Z2[ztunnel] --> B[App B]
-    end
-    Z1 -- HBONE / mTLS --> W[Waypoint proxy<br/>optional L7] --> Z2
-```
 
 No sidecars, lower resource use, no pod restarts · L7 features need a waypoint
 
@@ -95,20 +71,6 @@ the pod is created, using a **Mutating Admission Webhook** served by `istiod`.
    - volumes for certificates and config
 6. The API server applies the patch and stores the **modified pod**.
 7. The pod starts with **2 containers** (`2/2`): your app and `istio-proxy`.
-
-```mermaid
-sequenceDiagram
-    participant U as User / Deployment
-    participant API as Kubernetes API Server
-    participant W as istiod (injection webhook)
-    participant E as etcd
-    U->>API: Create Pod
-    API->>API: Is namespace labeled for injection?
-    API->>W: AdmissionReview (pod spec)
-    W-->>API: JSON patch (add istio-proxy, istio-init, volumes)
-    API->>E: Store mutated pod spec
-    Note over API,E: Pod runs with app + istio-proxy (2/2)
-```
 
 #### The namespace label qualifies the pod
 
