@@ -1,6 +1,5 @@
 # 01 · What is Istio?
 
-[⬅ Back to index](README.md)
 
 ## The problem
 In a microservices system, every service needs the same "plumbing":
@@ -44,4 +43,4 @@ handle traffic on its behalf. Developers write business logic; the mesh handles 
 Istio is the most feature-rich and widely adopted; the trade-off is more complexity.
 
 ---
-[Next: Architecture ➡](02-architecture.md)
+
