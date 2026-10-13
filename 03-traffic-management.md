@@ -22,7 +22,7 @@ apiVersion: networking.istio.io/v1alpha3
 metadata:
   name: myapp  # "just" a name for this virtmyappmespace: default
 spec:
-  homyapp-service.default.svc.cluster.local  # a regular K8S service name that we're applying routing rules to.
+  myapp-service.default.svc.cluster.local  # a regular K8S service name that we're applying routing rules to.
   http:  # defining routing rules
     - route:
         - destinatmyappt: myapp.default.svc.cluster.local # The Target K8S service
