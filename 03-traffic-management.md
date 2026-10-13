@@ -25,10 +25,10 @@ spec:
   myapp-service.default.svc.cluster.local  # a regular K8S service name that we're applying routing rules to.
   http:  # defining routing rules
     - route:
-        - destinatmyappt: myapp.default.svc.cluster.local # The Target K8S service
+        - destination: myapp.default.svc.cluster.local # The Target K8S service
             subset: safe-group  # The name defined in the DestinationRule
           weight: 90
-        - destinatmyappt: myapp.default.svc.cluster.local # The Target K8S service
+        - destination: myapp.default.svc.cluster.local # The Target K8S service
             subset: canary-group  # The name defined in the DestinationRule
           weight: 10
 ---
