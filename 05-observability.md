@@ -1,4 +1,4 @@
-# 06 · Observability
+# 05 · Observability
 
 Istio's proxies see every request, so you get telemetry **without changing application code**.
 
